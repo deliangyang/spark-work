@@ -62,6 +62,7 @@ object TreasureBoom {
         |    and create_time < unix_timestamp('2021-01-01 00:00:00') * 1000
         | group by user_id, type
         |""".stripMargin
+
     spark.sqlContext
       .sql(query)
       .show(10000)
@@ -87,6 +88,7 @@ object TreasureBoom {
         | group by user_id
         | order by user_id desc
         |""".stripMargin
+
     spark.sqlContext
       .sql(totalKd)
       .show(10000)
