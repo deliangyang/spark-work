@@ -4,7 +4,21 @@ import org.apache.spark.sql.SparkSession
 
 object TreasureBoom {
   /** *
-   * bin/spark-submit --jars /tmp/mysql-connector-java-8.0.22.jar --master local[4] /mnt/party-stat/out/artifacts/party_treasure_jar/party-stat.jar
+   * CPU利用率  (user + sys) / real * 100%
+   *
+   * 4 core
+   *
+   * real	1m31.208s
+   * user	5m48.895s
+   * sys	0m54.686s
+   *
+   * 8 core
+   *
+   * real	1m25.840s
+   * user	7m5.125s
+   * sys	1m7.741s
+   *
+   * bin/spark-submit --jars /tmp/mysql-connector-java-8.0.22.jar --master local[8] /mnt/party-stat/out/artifacts/party_treasure_jar/party-stat.jar
    *
    * @param args
    */
