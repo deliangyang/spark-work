@@ -8,6 +8,5 @@ import com.fasterxml.jackson.annotation.{JsonIgnoreProperties, JsonProperty}
 case class
 Log(
      @JsonProperty("user") @BeanProperty user: String,
-     @JsonProperty("time") @BeanProperty time: String,
+     @JsonProperty("time") @BeanProperty time: String
    )
-

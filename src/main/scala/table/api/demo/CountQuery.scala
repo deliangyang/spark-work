@@ -1,12 +1,8 @@
 package table.api.demo
 
-import org.apache.flink.table.api.EnvironmentSettings
-import org.apache.flink.table.api.TableEnvironment
-import org.apache.flink.table.api._
-import org.apache.flink.table.api.bridge.scala._
-import org.apache.flink.table.api.Expressions._
 import org.apache.flink.api.scala._
-import org.apache.flink.table.api._
+import org.apache.flink.table.api.Expressions._
+import org.apache.flink.table.api.{EnvironmentSettings, TableEnvironment}
 import org.apache.flink.table.api.bridge.scala._
 import org.apache.flink.types.Row
 
