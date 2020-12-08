@@ -1,6 +1,5 @@
 package com.party.log.stat
 
-import org.apache.parquet.Files
 import org.apache.spark.sql.{SaveMode, SparkSession}
 import org.apache.spark.sql.types.{StringType, StructType}
 

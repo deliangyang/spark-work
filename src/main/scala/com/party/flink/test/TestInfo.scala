@@ -1,6 +1,5 @@
 package com.party.flink.test
 
-import org.apache.flink.api.common.functions.FilterFunction
 import org.apache.flink.api.scala.ExecutionEnvironment
 import org.apache.flink.table.api.bridge.scala.BatchTableEnvironment
 import org.apache.flink.api.scala._

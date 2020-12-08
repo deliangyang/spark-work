@@ -28,3 +28,28 @@ the number of partitions, This, along with 'lowerBound' (inclusive), 'upperBound
 predicates	
 a list of conditions in the where clause; each one defines one partition
 ```
+
+```bash
+mvn clean scala:compile compile package
+```
+
+### Run it
+```bash
+rm -rf /tmp/4xx && \
+ spark-s --jars \
+ /mnt/party-stat/target/lib/spark-redis_2.12-2.4.2.jar,/mnt/party-stat/target/lib/jedis-2.8.0.jar,/mnt/party-stat/target/lib/commons-pool2-2.0.jar \
+ /mnt/party-stat/target/redis-demo-jar-with-dependencies.jar \
+ /tmp/tt.log /tmp/4xx
+```
+
+```text
+[INFO] --- maven-dependency-plugin:2.8:copy-dependencies (copy-dependencies) @ untitled ---
+[INFO] Copying spark-redis_2.12-2.4.2.jar to /mnt/party-stat/target/lib/spark-redis_2.12-2.4.2.jar
+[INFO] Copying commons-pool2-2.0.jar to /mnt/party-stat/target/lib/commons-pool2-2.0.jar
+[INFO] Copying scala-compiler-2.12.7.jar to /mnt/party-stat/target/lib/scala-compiler-2.12.7.jar
+[INFO] Copying scalap-2.12.9.jar to /mnt/party-stat/target/lib/scalap-2.12.9.jar
+[INFO] Copying scala-reflect-2.12.7.jar to /mnt/party-stat/target/lib/scala-reflect-2.12.7.jar
+[INFO] Copying scala-xml_2.12-1.2.0.jar to /mnt/party-stat/target/lib/scala-xml_2.12-1.2.0.jar
+[INFO] Copying jedis-2.8.0.jar to /mnt/party-stat/target/lib/jedis-2.8.0.jar
+[INFO]
+```
