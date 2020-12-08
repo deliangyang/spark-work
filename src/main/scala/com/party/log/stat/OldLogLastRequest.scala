@@ -19,14 +19,15 @@ object OldLogLastRequest {
         val node = a.substring(0, a.indexOf("/")).split("\t")
         Some(node(0).stripMargin, node(2).stripMargin)
       } catch {
-        case _: Exception => {
+        case e: Throwable => {
+          System.err.println(e)
           None
         }
       }
     }
       .filter(x => x.nonEmpty)
       .map(x => x.get)
-      .toDF("user", "time")
+      .toDF("time", "user")
 
     d2.createOrReplaceTempView("log")
     d2.sqlContext.sql("select user, max(time) from log where user > '0' group by user")

@@ -10,7 +10,7 @@ case class WC(word: String, frequency: Long)
 
 object TestInfo {
   def main(args: Array[String]): Unit = {
-    val env = ExecutionEnvironment.getExecutionEnvironment
+    val env = ExecutionEnvironment.createLocalEnvironment()
 
     val tEnv = BatchTableEnvironment.create(env)
     val input = env.fromElements(WC("hello", 1), WC("hello", 1), WC("ciao", 1))
@@ -18,8 +18,16 @@ object TestInfo {
     tEnv.createTemporaryView("WordCount", input, $"word", $"frequency")
 
     // run a SQL query on the Table and retrieve the result as a new Table
-    val table = tEnv.sqlQuery("SELECT word, SUM(frequency) FROM WordCount GROUP BY word")
+    //    val table = tEnv.sqlQuery("SELECT word, SUM(frequency) FROM WordCount GROUP BY word")
+    //
+    //    table.toDataSet[WC].print()
+    val query = tEnv.from("WordCount")
+      .groupBy($"word")
+      .select($"word", $"frequency".sum)
 
-    table.toDataSet[WC].print()
+    val tb = query.toDataSet[WC]
+    println(tb.collect())
+    // b.print()
+    tb.output(new OutPutTest)
   }
 }
