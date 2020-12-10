@@ -13,6 +13,7 @@
         <flink.version>1.11.2</flink.version>
         <scala.binary.version>2.12</scala.binary.version>
         <scala.version>2.12.1</scala.version>
+        <jackson.version>2.11.2</jackson.version>
     </properties>
 
 
@@ -140,6 +141,19 @@
             <artifactId>flink-table-planner-blink_2.11</artifactId>
             <version>1.11.2</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-json -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
+            <version>1.12.0</version>
         </dependency>
 
         <dependency>
@@ -403,6 +417,26 @@
                             <archive>
                                 <manifest>
                                     <mainClass>com.party.log.stat.BeatSinger</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>make-assembly-standard-app-log</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>standard-app-log</finalName>
+                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.error.log.StandardAppLog</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
