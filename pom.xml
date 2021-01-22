@@ -55,7 +55,6 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients_2.12</artifactId>
             <version>1.11.1</version>
-            <scope>provided</scope>
 
         </dependency>
 
@@ -74,7 +73,6 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_2.12</artifactId>
             <version>1.11.1</version>
-            <scope>provided</scope>
 
         </dependency>
 
@@ -85,6 +83,12 @@
             <version>8.0.22</version>
             <scope>provided</scope>
 
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.2.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-redis -->
@@ -282,161 +286,242 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
                 <executions>
-                    <execution>
-                        <id>ftp-test</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>jar1</finalName>
-<!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.party.flink.test.FtpTest</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <id>ftp-test</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>jar1</finalName>-->
+<!--&lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.flink.test.FtpTest</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-2</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>info</finalName>-->
+<!--&lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.flink.test.TestInfo</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-redis</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>redis-demo</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>spark.test.demo.HelloRedis</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-fraud</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>fraud</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>fraud.detection.demo.FraudDetector</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-old-log</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>old-log</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.log.stat.OldLogLastRequest</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-log-size</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>log-size</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.log.stat.CalcLogSize</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-beat-singer</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>beat-singer</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.log.stat.BeatSinger</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-standard-app-log</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>standard-app-log</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.error.log.StandardAppLog</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-php</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>standard-app-log-php</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.log.stat.PhpRequestTime</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-flink-kafla</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>link-kafka</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.stream.test.KafkaTest</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+
+<!--                    <execution>-->
+<!--                        <id>make-assembly-reduce</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <finalName>link-reduce</finalName>-->
+<!--                            &lt;!&ndash;                            <appendAssemblyId>false</appendAssemblyId>&ndash;&gt;-->
+<!--                            <descriptorRefs>-->
+<!--                                <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                            </descriptorRefs>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <mainClass>com.party.log.stat.Reduce</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
 
                     <execution>
-                        <id>make-assembly-2</id>
+                        <id>make-assembly-xxxx</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>info</finalName>
-<!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.party.flink.test.TestInfo</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-redis</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>redis-demo</finalName>
+                            <finalName>link-xxxxx</finalName>
                             <!--                            <appendAssemblyId>false</appendAssemblyId>-->
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>spark.test.demo.HelloRedis</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-fraud</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>fraud</finalName>
-                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>fraud.detection.demo.FraudDetector</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-old-log</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>old-log</finalName>
-                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.party.log.stat.OldLogLastRequest</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-log-size</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>log-size</finalName>
-                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.party.log.stat.CalcLogSize</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-beat-singer</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>beat-singer</finalName>
-                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.party.log.stat.BeatSinger</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>make-assembly-standard-app-log</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>standard-app-log</finalName>
-                            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.error.log.StandardAppLog</mainClass>
+                                    <mainClass>kafka.log.test.LogV1</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

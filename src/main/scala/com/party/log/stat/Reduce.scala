@@ -47,7 +47,7 @@ object Reduce {
     spark.udf.register("str2time", str2time)
 
     spark.sqlContext
-      .sql("select user, max(time) from log group by user")
+      .sql("select user, max(str2time(time)) from log group by user")
       .write.csv("/tmp/test2.txt")
   }
 }

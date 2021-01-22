@@ -13,7 +13,7 @@ object Loop {
 
     val test = Map(
       "a" -> 1,
-      "b" -> 2,
+      "b" -> 2
     )
     for ((k, v) <- test) println(s"k: $k, v: $v")
 
